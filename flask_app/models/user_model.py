@@ -20,4 +20,20 @@ class user:
 
         results = connectToMySQL('user_schema').query_db(query)
 
-        print(results)
+        user_row = []
+        for row in results:
+            new_user = cls(row)
+
+            user_row.append(new_user)
+        
+        return user_row
+    
+    @classmethod
+    def create_user(cls, form_data):
+        query = """
+            INSERT INTO users (first_name, last_name, email)
+            VALUES(%(first_name)s,%(last_name)s,%(email)s);
+        """
+
+        return connectToMySQL("user_schema").query_db(query, form_data)
+

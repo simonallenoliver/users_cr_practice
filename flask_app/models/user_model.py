@@ -37,3 +37,13 @@ class user:
 
         return connectToMySQL("user_schema").query_db(query, form_data)
 
+    @classmethod
+    def delete(cls, id):
+        data = {
+            "id":id
+        }
+
+        query = """
+            DELETE FROM users WHERE id = %(id)s
+        """
+        return connectToMySQL("user_schema").query_db(query, data)

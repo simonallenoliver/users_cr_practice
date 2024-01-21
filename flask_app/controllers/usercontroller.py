@@ -17,3 +17,8 @@ def create():
 def create_new_user():
     user.create_user(request.form)
     return redirect('/')
+
+@app.route("/delete_user/<int:id>")
+def delete_user(id):
+    user.delete(id)
+    return redirect('/') 

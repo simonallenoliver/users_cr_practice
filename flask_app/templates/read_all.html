@@ -21,6 +21,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
                 <td><a href="/delete_user/{{user.id}}">DELETE USER</a></td>
+                <td><a href="/update_page/{{user.id}}">UPDATE USER</a></td>
             </tr>
             {% endfor %}
         </tbody>

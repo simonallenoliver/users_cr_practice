@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>create</title>
+    <title>update</title>
 </head>
 <body>
 <a href="/">go to home page</a>
-    <h3>add a user on this page</h3>
+    <h3>update a user on this page</h3>
 
-    <form action="/create_new_user" method= "POST" >
+    <form action="/save" method= "POST" >
 
         <hr>
         <label>First Name:</label>
-        <input type="text" name="first_name">
+        <input type="text" name="first_name" value = "{{user.first_name}}">
         <br>
         <label>Last Name:</label>
-        <input type="text" name="last_name">
+        <input type="text" name="last_name" value = "{{user.last_name}}">
         <br>
         <label>Email:</label>
-        <input type="text" name="email">
+        <input type="text" name="email" value = "{{user.email}}">
         <br>
+        <input type="hidden" name = "id" value = "{{user.id}}">
         <button>Submit</button>
 
     </form>

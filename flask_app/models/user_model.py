@@ -3,7 +3,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 
 
-class user:
+class User:
     def __init__(self, data):
         self.id = data["id"]
         self.first_name = data["first_name"]
@@ -47,3 +47,30 @@ class user:
             DELETE FROM users WHERE id = %(id)s
         """
         return connectToMySQL("user_schema").query_db(query, data)
+    
+# form pre-population needs get_one class method. this selects a row of data from the db to use on the update page
+    @classmethod
+    def get_one(cls, id):
+        data = {
+            "id":id
+        }
+
+        query = """
+            SELECT * FROM users WHERE id = %(id)s
+        """
+        results = connectToMySQL("user_schema").query_db(query, data)
+
+        if results:
+            row = results[0]
+            new_user = cls(row)
+            return new_user
+    
+    @classmethod
+    def update(cls, data):
+
+        query = """
+            UPDATE users 
+            SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s
+            WHERE id = %(id)s
+        """
+        connectToMySQL("user_schema").query_db(query, data)
